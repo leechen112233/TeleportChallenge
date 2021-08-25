@@ -50,7 +50,7 @@ Mainly consists of two parts: the navigation bar and a table.
    * The navigation bar shows the absolute path of current position in the following hierarchical format. The user can click any level of the path to go to the level. For example, if the user click ***teleport*** folder, the interface to render the contents of the folder.
    * The navigation bar also includes a search area where the user can search the specific file under the current level. For example, if the user inputs a "tel" string when he is in the lib folder, the list will render the files whose name includes such a string.
 
-![hierachical path](E:\找工作\interview\Teleport\chanllenge\images\navigation bar.png)
+![hierachical path](navigation bar.png)
 
  2. Table
 
