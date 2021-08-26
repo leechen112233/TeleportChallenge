@@ -1,0 +1,13 @@
+.navBar {
+  width: 100%;
+  display: flex;
+  margin-left: 5px;
+  a {
+    padding: 5px;
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    color: blue;
+  }
+}
