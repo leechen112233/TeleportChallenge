@@ -1,6 +1,5 @@
 import React,{useContext} from 'react'
 import {RightOutlined} from '@ant-design/icons'
-// import {BrowserRouter, Route, Link} from 'react-router-dom'
 
 import './index.scss'
 import {FolderContext,CHANGE_FOLDER} from '../../pages/Home'

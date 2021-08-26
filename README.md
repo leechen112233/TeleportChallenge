@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Software Design Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Project Name: A file/folder viewer
 
-## Available Scripts
+##### Date: 2021/8/20
 
-In the project directory, you can run:
+##### Written By: Chen Li
 
-### `yarn start`
+### Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##### This project aims at building a web application that allows users to browse directory content from a remote server. I aim at level1-2 so there is little interaction between front-end and back-end and the directory content will be simulated by the following JSON data tree. This data will be changed into a more complex one for tests.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```javascript
+const directory = {
+  name: "teleport",
+  sizeKb: 0,
+  type: "dir",
+  items: [
+    {
+      name: "lib",
+      sizeKb: 0,
+      type: "dir",
+      items: [
+        {
+          name: "teleport.go",
+          sizeKb: 320,
+          type: "file",
+        },
+        {
+          name: "test.go",
+          sizeKb: 3320,
+          type: "file",
+        },
+      ],
+    },
+    {
+      name: "README.md",
+      sizeKb: 4340,
+      type: "file",
+    },
+  ],
+};
+```
 
-### `yarn test`
+### Application Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### This application will use the JSON data to mimic a real folder viewer with some functions like filtering and sorting.
 
-### `yarn build`
+###### Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Mainly consists of two parts: the navigation bar and a table.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. _Navigation Bar_
+   - The navigation bar shows the absolute path of current position in the following hierarchical format. The user can click any level of the path to go to the level. For example, if the user click **_teleport_** folder, the interface to render the contents of the folder.
+   - The navigation bar also includes a search area where the user can search the specific file under the current level. For example, if the user inputs a "tel" string when he is in the lib folder, the list will render the files whose name includes such a string.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![hierachical path](E:\找工作\interview\Teleport\chanllenge\images\navigation bar.png)
 
-### `yarn eject`
+2.  Table
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    - A table header displays **_name_**, **_size_**, and **_type_** attributes of all contents under the current level and the attributes can be clicked to sort the contents.
+    - A table body shows all the contents of the current level according to the sorting function of the header.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Development planning
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+###### Development tools
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- HTML3
+- CSS5
+- JavaScript
+- React.js
+- Ant Design UI
 
-## Learn More
+###### Development libraries
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- antd
+- prop-types
+- react-dom
+- react-router-dom
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Security precautions for React
 
-### Code Splitting
+- bind data inside of the component to prevent XSS attacks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- validate whether URL links are in my white list to prevent potential inject of dynamic scripts through javascript:protocols
 
-### Analyzing the Bundle Size
+- try not to visit actual DOMs directly
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- using well-known or popular libraries to prevent possible vulnerabilities in dependencies
 
-### Making a Progressive Web App
+###### Development Milestones
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- finish static webpage by 8/25
 
-### Advanced Configuration
+- add navigation function and filtering function by 8/29
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- add sorting function by 8/31
 
-### Deployment
+- design tests data by 9/2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- finish testing and optimization by 9/5
 
-### `yarn build` fails to minify
+###### Version control
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- designDoc: only add a design documentation to the project
+- v1: complete data process and the breadcrumb
+- v2: complete data filtering function
