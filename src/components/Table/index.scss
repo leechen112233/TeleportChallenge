@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  align-items: center;
+  height: "50px";
+  border-bottom: 1px solid #999;
+  .fileName {
+    display: inline-block;
+    width: 30%;
+    text-align: left;
+    margin-left: 20px;
+  }
+  .fileSize {
+    flex: 1;
+  }
+  .fileType {
+    flex: 1;
+  }
+}
+
+.row:hover {
+  background-color: rgb(216, 216, 216);
+}
